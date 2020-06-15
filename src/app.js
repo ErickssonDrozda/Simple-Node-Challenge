@@ -24,7 +24,7 @@ app.post("/repositories", (request, response) => {
     like: 0
   }
   repositories.push(repository);
-  return response.status(200).send();
+  return response.status(200).json(repository);
   //{ id: "uuid", title: 'Desafio Node.js', url: 'http://github.com/...', techs: ["Node.js", "..."], likes: 0 }
 });
 
@@ -62,7 +62,7 @@ app.delete("/repositories/:id", (request, response) => {
 
   repositories.splice(repositoryIndex, 1);
 
-  return response.status(200).send();
+  return response.status(204).send();
 });
 
 app.post("/repositories/:id/like", (request, response) => {
