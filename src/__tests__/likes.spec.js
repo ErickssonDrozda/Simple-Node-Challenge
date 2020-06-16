@@ -1,14 +1,14 @@
 const request = require("supertest");
 const app = require("../app");
 
-describe("Like", () => {
+describe("Likes", () => {
   it("should be able to give a like to the repository", async () => {
     const repository = await request(app)
       .post("/repositories")
       .send({
         url: "https://github.com/Rocketseat/umbriel",
         title: "Umbriel",
-        techs: "Node, Express, TypeScript"
+        techs: ["Node", "Express", "TypeScript"]
       });
 
     let response = await request(app).post(
@@ -16,7 +16,7 @@ describe("Like", () => {
     );
 
     expect(response.body).toMatchObject({
-      like: 1
+      likes: 1
     });
 
     response = await request(app).post(
@@ -24,7 +24,7 @@ describe("Like", () => {
     );
 
     expect(response.body).toMatchObject({
-      like: 2
+      likes: 2
     });
   });
 
